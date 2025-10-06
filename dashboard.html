@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel — Indicação & Gamificação</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+</head>
+<body class="dashboard-page">
+  <header class="header">
+    <div class="brand">
+      <img src="img/logo.jpg" alt="Logo">
+      <div class="name">Educajá</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <section class="card" style="max-width:560px">
+        <h1>Compartilhe e ganhe</h1>
+        <p class="subtitle">Estratégia de crescimento baseada em rede. Incentivos alinhados ao funil de aquisição.</p>
+
+        <label class="label" for="link">Seu link de indicação</label>
+        <div class="row" style="grid-template-columns:1fr auto">
+          <input id="link" class="input" value="https://educaja.com/i/ayrlla123" readonly>
+          <button class="btn btn-primary" id="btnCopy" type="button" title="Copiar link">Copiar</button>
+        </div>
+        <div id="copyOk" class="alert success">Link copiado. Agora é só distribuir no WhatsApp, Instagram e afins.</div>
+
+        <div class="kpi-wrap">
+          <div class="kpi">
+            <div class="value" id="kpiIndicados">0</div>
+            <div class="label">Indicações</div>
+          </div>
+          <div class="kpi">
+            <div class="value" id="kpiVendas">0</div>
+            <div class="label">Vendas</div>
+          </div>
+          <div class="kpi">
+            <div class="value" id="kpiCashback">R$ 0,00</div>
+            <div class="label">Cashback</div>
+          </div>
+        </div>
+
+        <h2 style="margin:22px 0 8px; font-size:18px">Metas & Recompensas</h2>
+        <div class="badge">Meta atual: enviar para 50 pessoas → R$ 50</div>
+        <div class="badge">Upgrade: 200 envios → R$ 300 + bônus surpresa</div>
+        <div style="margin-top:12px">
+          <div class="progress"><span id="pg"></span></div>
+          <small class="label"><span id="pgTxt">0</span>% da meta de 50 envios</small>
+        </div>
+
+        <div class="helper" style="margin-top:16px">
+          <button class="btn btn-ghost" type="button" onclick="simular()">Simular atividade</button>
+          <a href="login.html">Sair</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">© 2025 - <strong>Educajá</strong></footer>
+
+  <script>
+    // Demo state (mock)
+    let indicados = 18, vendas = 7, cashback = 123.45, enviados = 23;
+
+    function formatBRL(v){
+      return v.toLocaleString('pt-BR',{style:'currency', currency:'BRL'});
+    }
+
+    function refresh(){
+      document.getElementById('kpiIndicados').textContent = indicados;
+      document.getElementById('kpiVendas').textContent = vendas;
+      document.getElementById('kpiCashback').textContent = formatBRL(cashback);
+      const pct = Math.min(100, Math.round((enviados/50)*100));
+      document.getElementById('pg').style.width = pct + '%';
+      document.getElementById('pgTxt').textContent = pct;
+    }
+
+    function simular(){
+      // Simula novas ações do usuário
+      const addedIndic = Math.floor(Math.random()*5)+1;
+      const addedVendas = Math.random() < .4 ? 1 : 0;
+      const addedCash = addedVendas ? (Math.random()*40)+10 : (Math.random()*5);
+      indicados += addedIndic;
+      vendas += addedVendas;
+      cashback += addedCash;
+      enviados += Math.floor(Math.random()*10)+addedIndic;
+      refresh();
+    }
+
+    document.getElementById('btnCopy').addEventListener('click', async () => {
+      const txt = document.getElementById('link').value;
+      try{
+        await navigator.clipboard.writeText(txt);
+        const ok = document.getElementById('copyOk'); ok.style.display = 'block';
+        setTimeout(()=> ok.style.display='none', 1600);
+      }catch(e){
+        alert('Falha ao copiar. Selecione e use Ctrl+C/⌘C.');
+      }
+    });
+
+    refresh();
+  </script>
+</body>
+</html>
