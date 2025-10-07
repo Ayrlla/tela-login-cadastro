@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login — Sistema de Indicação</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+</head>
+<body class="auth-page">
+  <header class="header">
+    <div class="brand">
+      <img src="img/logo.jpg" alt="Logo">
+      <div class="name">Educajá</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="login-icon">
+        <img src="img/login.png" alt="Ícone de usuário">
+      </div>
+
+      <h1>Entrar</h1>
+      <p class="subtitle">Transforme conexões em conquistas, comece agora. Acesso rápido ao seu painel de indicações.</p>
+
+      <form class="form" onsubmit="event.preventDefault(); window.location.href='dashboard.html'">
+        <div>
+          <label class="label" for="email">E-mail</label>
+          <input class="input" id="email" type="email" placeholder="voce@email.com" required>
+        </div>
+        <div>
+          <label class="label" for="senha">Senha</label>
+          <input class="input" id="senha" type="password" minlength="6" placeholder="••••••••" required>
+        </div>
+
+        <div class="helper">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer">
+            <input type="checkbox" onclick="togglePwd()" aria-label="Mostrar senha"> Mostrar senha
+          </label>
+          <a href="#">Esqueceu a senha?</a>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Entrar</button>
+        <button class="btn btn-ghost" type="button" onclick="window.location.href='cadastro.html'">Criar conta</button>
+
+        <div class="badges">
+          <span class="badge">Acessível</span>
+          <span class="badge">Eficiente</span>
+          <span class="badge">Seguro</span>
+          <span class="badge">Transformador</span>
+          <span class="badge">Feito pra você</span>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">© 2025 - <strong>Educajá</strong></footer>
+
+  <script>
+    function togglePwd() {
+      const el = document.getElementById('senha');
+      el.type = (el.type === 'password') ? 'text' : 'password';
+    }
+  </script>
+</body>
+</html>

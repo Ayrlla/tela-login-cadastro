@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro — Sistema de Indicação</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+</head>
+<body class="auth-page">
+  <header class="header">
+    <div class="brand">
+      <img src="img/logo.jpg" alt="Logo">
+      <div class="name">Educajá</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Crie sua conta</h1>
+      <p class="subtitle">Zero atrito. Coleta de dados lean para acelerar a conversão.</p>
+
+      <form class="form" onsubmit="return handleCadastro(event)">
+        <div>
+          <label class="label" for="nome">Nome</label>
+          <input class="input" id="nome" type="text" placeholder="Seu nome" required>
+        </div>
+        <div class="row">
+          <div>
+            <label class="label" for="tel">Telefone</label>
+            <input class="input" id="tel" type="tel" placeholder="(00) 99999-9999" required>
+          </div>
+          <div>
+            <label class="label" for="email">E-mail</label>
+            <input class="input" id="email" type="email" placeholder="voce@email.com" required>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label class="label" for="senha">Senha</label>
+            <input class="input" id="senha" type="password" minlength="6" placeholder="Mín. 6 caracteres" required>
+          </div>
+          <div>
+            <label class="label" for="confirm">Confirmar senha</label>
+            <input class="input" id="confirm" type="password" minlength="6" placeholder="Repita a senha" required>
+          </div>
+        </div>
+
+        <div id="alert" class="alert error">As senhas não conferem.</div>
+
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
+        <button class="btn btn-ghost" type="button" onclick="window.location.href='login.html'">Voltar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">© 2025 - <strong>Educajá</strong></footer>
+
+  <script>
+    function handleCadastro(e){
+      e.preventDefault();
+      const s1 = document.getElementById('senha').value;
+      const s2 = document.getElementById('confirm').value;
+      const alert = document.getElementById('alert');
+      if(s1 !== s2){
+        alert.style.display = 'block';
+        return false;
+      }
+      alert.className = 'alert success';
+      alert.textContent = 'Conta criada com sucesso! Redirecionando…';
+      alert.style.display = 'block';
+      setTimeout(()=> window.location.href='login.html', 1200);
+      return false;
+    }
+  </script>
+</body>
+</html>
