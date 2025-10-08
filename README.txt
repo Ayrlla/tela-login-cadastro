@@ -70,4 +70,4 @@ As imagens são aplicadas via CSS nas classes `.auth-page` e `.dashboard-page`, 
 
 📝 LICENÇA
 
-Este projeto está sob a licença MIT. Você pode usá-lo, modificá-lo e distribuí-lo livremente.
+Este projeto está sob a licença dos participantes, qualquer alteração deve ser comentada e autorizadas pelos dev do projeto.
